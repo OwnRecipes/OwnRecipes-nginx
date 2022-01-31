@@ -95,7 +95,7 @@ project:
    # Navigate to the newly cloned directory
    cd <repo-name>
    # Assign the original repo to a remote called "upstream"
-   git remote add upstream https://github.com/open-eats/openeats-nginx
+   git remote add upstream https://github.com/OwnRecipes/OwnRecipes
    ```
 
 2. If you cloned a while ago, get the latest changes from upstream:
@@ -119,6 +119,7 @@ project:
 5. Locally merge (or rebase) the upstream development branch into your topic branch:
 
    ```bash
+   git pull [--rebase] upstream master
    ```
 
 6. Push your topic branch up to your fork:
