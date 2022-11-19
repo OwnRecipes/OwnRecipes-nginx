@@ -5,6 +5,7 @@
 # Sed replace the API_PORT vars.
 
 sed -i "s/API_PORT/$API_PORT/g" /etc/nginx/conf.d/default.conf;
+sed -i "s/ADMIN_URL/${ADMIN_URL:-admin}/g" /etc/nginx/conf.d/default.conf;
 
 # Start the NGINX service.
 
