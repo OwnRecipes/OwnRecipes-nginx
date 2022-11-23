@@ -1,11 +1,18 @@
 #!/usr/bin/env sh
 
+if [ -f "/ssl/cert.pem" ] && [ ${HTTP_X_FORWARDED_PROTO} == "true" || ${HTTP_X_FORWARDED_PROTO} == "TRUE" ]; then
+    mv /conf/default_https.conf /etc/nginx/conf.d/default.conf;
+else
+    mv /conf/default_http.conf /etc/nginx/conf.d/default.conf;
+fi
+
 # NGINX doesn't let you use ENV vars within the conf file.
 # We use sed to set the env vars we need.
-# Sed replace the API_PORT vars.
+# Sed replace the API_PORT, ADMIN_URL and NODE_URL vars.
 
 sed -i "s/API_PORT/$API_PORT/g" /etc/nginx/conf.d/default.conf;
 sed -i "s/ADMIN_URL/${ADMIN_URL:-admin}/g" /etc/nginx/conf.d/default.conf;
+sed -i "s/NODE_URL/${NODE_URL}/g" /etc/nginx/conf.d/default.conf;
 
 # Start the NGINX service.
 
